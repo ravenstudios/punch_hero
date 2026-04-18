@@ -1,12 +1,11 @@
 import os
+import pygame
 from sensors import Sensors
 from hit_block import HITBLOCK
 
 os.environ["SDL_VIDEODRIVER"] = "kmsdrm"
 
-import pygame
 
-# pygame.init()
 pygame.display.init()
 
 pygame.font.init()
@@ -38,6 +37,16 @@ def update():
     left_hitbox.update()
     right_hitbox.update()
 
+    hit = sensors.read_hit()
+    if hit:
+        print(hit)
+        side, strength = hit
+        if side == "L":
+            left_hitbox.check_hit()
+        elif side == "R":
+            right_hitbox.check_hit()
+
+
 
 try:
     while running:
@@ -48,16 +57,6 @@ try:
         surface.fill((0, 0, 0))
 
 
-        # hit = sensors.read_hit()
-        # if hit:
-        #     side, strength = hit
-        #     if side == "L":
-        #         c1 = (255, 0, 0)
-        #     elif side == "R":
-        #         c2 = (255, 0, 0)
-
-        # pygame.draw.rect(screen, c1, (50, 50, 300, 300))
-        # pygame.draw.rect(screen, c2, (400, 50, 300, 300))
 
         update()
         draw()
