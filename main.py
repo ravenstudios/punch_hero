@@ -5,7 +5,7 @@ from hit_block import HITBLOCK
 
 os.environ["SDL_VIDEODRIVER"] = "kmsdrm"
 
-
+# test
 pygame.display.init()
 
 pygame.font.init()
