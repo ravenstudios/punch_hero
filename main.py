@@ -1,10 +1,9 @@
 import os
 import pygame
-from input_manager import INPUT_MANAGER
-from state import State, GameContext
-
+from input_manager import InputManager
+from state import State
+from game_context import GameContext
 from state_manager import StateManager
-
 
 os.environ["SDL_VIDEODRIVER"] = "kmsdrm"
 
@@ -15,16 +14,12 @@ font = pygame.font.SysFont(None, 80)  # default font, size 80
 surface = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 running = True
-
 width, height = surface.get_size()
 
-input_manager = INPUT_MANAGER()
-
-
+input_manager = InputManager()
 game_context = GameContext(surface, input_manager, font)
 state_manager = StateManager(game_context)
 game_context.change_state = state_manager.change_state
-
 
 
 def draw():
@@ -36,6 +31,7 @@ def draw():
         state_manager.draw()
 
     pygame.display.flip()
+
 
 def update():
     if input_manager.error:

@@ -12,22 +12,16 @@ class Game(state.State):
     def update(self):
         self.left_hitbox.update()
         self.right_hitbox.update()
-        # hit = self.input_manager.read_hit()
-
-        # if hit:
-        #     side, strength = hit
-        #     if side == "L":
-        #         self.left_hitbox.check_hit()
-        #     elif side == "R":
-        #         self.right_hitbox.check_hit()
-
         hit = self.input_manager.read_hit()
 
         if hit:
             side, strength = hit
             if side == "L":
-                self.game_context.change_state("menu")
+                self.left_hitbox.check_hit()
             elif side == "R":
+                self.right_hitbox.check_hit()
+ 
+            elif side == "BOTH":
                 self.game_context.change_state("pause")
 
 

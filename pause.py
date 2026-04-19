@@ -10,9 +10,7 @@ class Pause(state.State):
 
         if hit:
             side, strength = hit
-            if side == "L":
-                self.game_context.change_state("menu")
-            elif side == "R":
+            if side == "BOTH":
                 self.game_context.change_state("game")
 
     def draw(self):
