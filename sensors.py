@@ -6,20 +6,26 @@ class Sensors:
     def __init__(self):
         self.PORT = "/dev/ttyUSB0"
         self.BAUD = 115200
+        self.error = False
+        try:
+            self.ser = serial.Serial(
+                self.PORT,
+                self.BAUD,
+                timeout=0,      # non-blocking
+                dsrdtr=False,
+                rtscts=False
+            )
+        
 
-        self.ser = serial.Serial(
-            self.PORT,
-            self.BAUD,
-            timeout=0,      # non-blocking
-            dsrdtr=False,
-            rtscts=False
-        )
+            self.ser.setDTR(False)
+            self.ser.setRTS(False)
 
-        self.ser.setDTR(False)
-        self.ser.setRTS(False)
+            time.sleep(2)
+            self.ser.reset_input_buffer()
 
-        time.sleep(2)
-        self.ser.reset_input_buffer()
+        except (serial.SerialException, FileNotFoundError):
+            print("⚠️ Sensor not connected")
+            self.error = True
 
         print(f"Connected to {self.PORT} @ {self.BAUD}")
 
