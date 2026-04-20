@@ -2,10 +2,11 @@ from sensors import Sensors
 import time
 
 class InputManager:
-    def __init__(self):
-        self.sensors = Sensors()
+    def __init__(self, input_source):
+
+        self.sensors = input_source
         self.error = self.sensors.error
-        
+
         self.last_left_time = 0
         self.last_right_time = 0
         self.both_window = 0.05
@@ -14,10 +15,9 @@ class InputManager:
 
     def update(self):
         pass
-    
+
     def read_hit(self):
         hit = self.sensors.read_hit()
-
         if not hit:
             self.last_hit_type = None
             return
@@ -40,6 +40,3 @@ class InputManager:
 
     def close(self):
         self.sensors.close()
-
-  
-        

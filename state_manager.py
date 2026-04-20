@@ -14,7 +14,10 @@ class StateManager:
         self.current = "menu"
 
     def change_state(self, new_state):
-        self.current = new_state
+        if new_state in self.states:
+            self.current = new_state
+        else:
+            print(f"Unknow State \"{new_state}\"")
 
     def update(self):
         self.states[self.current].update()
