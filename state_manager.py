@@ -1,14 +1,19 @@
 from game import Game
 from menu import Menu
-from pause import Pause
-
+from pause_menu import PauseMenu
+from game_type_menu import GameTypeMenu
+from speed_menu import SpeedMenu
+from time_menu import TimeMenu
 
 class StateManager:
     def __init__(self, game_context):
         self.states = {
             "menu": Menu(game_context),
             "game": Game(game_context),
-            "pause": Pause(game_context),
+            "pause": PauseMenu(game_context),
+            "game_type_menu": GameTypeMenu(game_context),
+            "speed_menu": SpeedMenu(game_context),
+            "time_menu": TimeMenu(game_context),
         }
 
         self.current = "menu"

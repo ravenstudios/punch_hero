@@ -5,11 +5,12 @@ from state import State
 from game_context import GameContext
 from state_manager import StateManager
 from keyboard_input import KeyboardInput
-from sensors import Sensors
 
 computer_debug = 1
 keyboard_input = KeyboardInput()
-sensors = Sensors()
+if not computer_debug:
+    from sensors import Sensors
+    sensors = Sensors()
 
 if computer_debug:
     input_manager = InputManager(keyboard_input)

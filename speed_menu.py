@@ -1,10 +1,11 @@
 from menu_state import MenuState
 
-class Menu(MenuState):
+class SpeedMenu(MenuState):
     def __init__(self, game_context):
         super().__init__(game_context)
         self.options = [
-            {"title":"Start Game", "state": "game_type_menu"},
-            {"title":"Options", "state": "options"},
+            {"title":"Speed", "state": ""},
+            {"title":"Back", "state": "game_type_menu"},
+
 
         ]
