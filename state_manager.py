@@ -16,7 +16,7 @@ class StateManager:
             "time_menu": TimeMenu(game_context),
         }
 
-        self.current = "menu"
+        self.current = "game"
 
     def change_state(self, new_state):
         if new_state in self.states:

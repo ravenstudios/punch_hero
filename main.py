@@ -23,7 +23,8 @@ pygame.display.init()
 pygame.font.init()
 
 font = pygame.font.SysFont(None, 80)  # default font, size 80
-surface = pygame.display.set_mode((800, 600))
+# surface = pygame.display.set_mode((800, 600))
+surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN, display=1)
 clock = pygame.time.Clock()
 running = True
 width, height = surface.get_size()
