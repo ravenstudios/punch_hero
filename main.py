@@ -20,11 +20,12 @@ else:
 
 
 pygame.display.init()
+pygame.mixer.init()
 pygame.font.init()
 
 font = pygame.font.SysFont(None, 80)  # default font, size 80
 # surface = pygame.display.set_mode((800, 600))
-surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN, display=1)
+surface = pygame.display.set_mode((0, 0), pygame.NOFRAME, display=1)
 clock = pygame.time.Clock()
 running = True
 width, height = surface.get_size()
@@ -60,6 +61,11 @@ try:
         events = pygame.event.get()
         keyboard_input.get_events(events)
         for event in events:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    state_manager.reset()
+                if event.key == pygame.K_q:
+                    running = False
             if event.type == pygame.QUIT:
                 running = False
         update()

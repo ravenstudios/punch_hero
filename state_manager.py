@@ -29,3 +29,6 @@ class StateManager:
 
     def draw(self):
         self.states[self.current].draw()
+
+    def reset(self):
+        self.states[self.current].reset()

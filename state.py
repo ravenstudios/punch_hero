@@ -13,3 +13,6 @@ class State:
 
     def draw(self):
         pass
+
+    def update(self):
+        pass

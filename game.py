@@ -2,6 +2,8 @@ import pygame
 import state
 from hit_boxes import HitBoxes
 from falling_block import FallingBlock
+from music_player import MusicPlayer
+
 
 class Game(state.State):
     def __init__(self, game_context):
@@ -13,6 +15,10 @@ class Game(state.State):
         for p in self.patterns:
             self.falling_blocks.append(FallingBlock(self.surface.get_size(), p))
         self.hit = None
+
+        self.music_player = MusicPlayer()
+        self.music_player.load("songs/Mortal Kombat Theme Song.mp3")
+        self.music_player.play()
 
 
     def update(self):
@@ -36,3 +42,8 @@ class Game(state.State):
         self.hit_boxes.draw(self.surface)
         for block in self.falling_blocks:
             block.draw(self.surface)
+
+    def reset(self):
+        self.falling_blocks = []
+        for p in self.patterns:
+            self.falling_blocks.append(FallingBlock(self.surface.get_size(), p))
